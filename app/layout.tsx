@@ -26,7 +26,12 @@ export const metadata: Metadata = {
   description: "Free link shortener with analytics. Create short, memorable links in seconds and track performance with our powerful dashboard.",
 };
 
-const hasClerkKeys = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY?.startsWith('pk_');
+// Minimum length for a valid Clerk publishable key (pk_test_... or pk_live_...)
+const CLERK_KEY_MIN_LENGTH = 10;
+
+const clerkPublishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
+const hasClerkKeys = clerkPublishableKey?.startsWith('pk_') && 
+  (clerkPublishableKey?.length ?? 0) > CLERK_KEY_MIN_LENGTH;
 
 export default function RootLayout({
   children,

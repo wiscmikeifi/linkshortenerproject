@@ -2,6 +2,8 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Link as LinkIcon, Zap, BarChart3, Shield } from "lucide-react";
 
+const DASHBOARD_ROUTE = "/dashboard";
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
@@ -19,12 +21,12 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-4">
-            <Link href="/dashboard">
+            <Link href={DASHBOARD_ROUTE}>
               <Button size="lg" className="text-lg px-8">
                 Get Started Free
               </Button>
             </Link>
-            <Link href="/dashboard">
+            <Link href={DASHBOARD_ROUTE}>
               <Button size="lg" variant="outline" className="text-lg px-8">
                 View Dashboard
               </Button>
@@ -81,7 +83,7 @@ export default function Home() {
                 <BenefitItem text="Detailed analytics to understand your audience" />
                 <BenefitItem text="Custom branded short links for your business" />
                 <BenefitItem text="Easy-to-use dashboard for all your links" />
-                <BenefitItem text="Secure authentication with Clerk" />
+                <BenefitItem text="Secure and reliable platform infrastructure" />
               </ul>
             </div>
             <div className="flex items-center justify-center">
@@ -103,7 +105,7 @@ export default function Home() {
           <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
             Join thousands of users who trust our platform to manage their links. Sign up now and start shortening!
           </p>
-          <Link href="/dashboard">
+          <Link href={DASHBOARD_ROUTE}>
             <Button size="lg" variant="secondary" className="text-lg px-8">
               Start Shortening Now
             </Button>
