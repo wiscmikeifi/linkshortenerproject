@@ -1,65 +1,146 @@
-import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Link as LinkIcon, Zap, BarChart3, Shield } from "lucide-react";
+
+const DASHBOARD_ROUTE = "/dashboard";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+      {/* Hero Section */}
+      <section className="container mx-auto px-6 py-20 md:py-32">
+        <div className="flex flex-col items-center text-center space-y-8">
+          <div className="space-y-4">
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
+              Shorten Your Links,
+              <br />
+              <span className="text-primary">Amplify Your Reach</span>
+            </h1>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Create short, memorable links in seconds. Track clicks, analyze traffic, and manage all your links from one powerful dashboard.
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Link href={DASHBOARD_ROUTE}>
+              <Button size="lg" className="text-lg px-8">
+                Get Started Free
+              </Button>
+            </Link>
+            <Link href={DASHBOARD_ROUTE}>
+              <Button size="lg" variant="outline" className="text-lg px-8">
+                View Dashboard
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="container mx-auto px-6 py-20">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Everything You Need
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Powerful features designed to help you manage and optimize your links
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <FeatureCard
+            icon={<LinkIcon className="size-8" />}
+            title="Quick Shortening"
+            description="Transform long URLs into short, shareable links instantly with our simple interface."
+          />
+          <FeatureCard
+            icon={<Zap className="size-8" />}
+            title="Lightning Fast"
+            description="Optimized for speed with instant redirects and minimal latency for the best user experience."
+          />
+          <FeatureCard
+            icon={<BarChart3 className="size-8" />}
+            title="Analytics Dashboard"
+            description="Track clicks, monitor traffic sources, and gain insights with comprehensive analytics."
+          />
+          <FeatureCard
+            icon={<Shield className="size-8" />}
+            title="Secure & Reliable"
+            description="Your links are protected with enterprise-grade security and 99.9% uptime guarantee."
+          />
         </div>
-      </main>
+      </section>
+
+      {/* Benefits Section */}
+      <section className="container mx-auto px-6 py-20">
+        <div className="bg-card border rounded-lg p-8 md:p-12">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <h2 className="text-3xl md:text-4xl font-bold">
+                Why Choose Our Link Shortener?
+              </h2>
+              <ul className="space-y-4">
+                <BenefitItem text="Unlimited link shortening with no restrictions" />
+                <BenefitItem text="Detailed analytics to understand your audience" />
+                <BenefitItem text="Custom branded short links for your business" />
+                <BenefitItem text="Easy-to-use dashboard for all your links" />
+                <BenefitItem text="Secure and reliable platform infrastructure" />
+              </ul>
+            </div>
+            <div className="flex items-center justify-center">
+              <div className="bg-muted rounded-lg p-12 text-center">
+                <BarChart3 className="size-32 mx-auto text-primary mb-4" />
+                <p className="text-lg font-medium">Real-time Analytics</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="container mx-auto px-6 py-20">
+        <div className="bg-primary text-primary-foreground rounded-lg p-12 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Ready to Get Started?
+          </h2>
+          <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
+            Join thousands of users who trust our platform to manage their links. Sign up now and start shortening!
+          </p>
+          <Link href={DASHBOARD_ROUTE}>
+            <Button size="lg" variant="secondary" className="text-lg px-8">
+              Start Shortening Now
+            </Button>
+          </Link>
+        </div>
+      </section>
     </div>
+  );
+}
+
+function FeatureCard({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
+  return (
+    <div className="bg-card border rounded-lg p-6 space-y-4 hover:shadow-lg transition-shadow">
+      <div className="text-primary">{icon}</div>
+      <h3 className="text-xl font-semibold">{title}</h3>
+      <p className="text-muted-foreground">{description}</p>
+    </div>
+  );
+}
+
+function BenefitItem({ text }: { text: string }) {
+  return (
+    <li className="flex items-start gap-3">
+      <svg
+        className="size-6 text-primary mt-0.5 shrink-0"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path d="M5 13l4 4L19 7"></path>
+      </svg>
+      <span className="text-lg">{text}</span>
+    </li>
   );
 }
