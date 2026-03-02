@@ -1,6 +1,31 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## 📚 Documentation
+
+- **[Using GitHub Cloud Agent Changes](docs/USING_GITHUB_CHANGES.md)** - Learn how to use changes made by cloud agents and run the app locally
+- **[Agent Instructions](docs/AGENTS.md)** - Guidelines for AI coding assistants
+- **[Authentication](docs/AUTHENTICATION.md)** - Clerk authentication setup and patterns
+- **[UI Components](docs/UI_COMPONENTS.md)** - shadcn/ui component usage and styling
+
 ## Getting Started
+
+### Prerequisites
+
+- Node.js 20 or higher
+- npm (comes with Node.js)
+
+### Installation
+
+```bash
+# Install dependencies
+npm install
+
+# Set up environment variables (see docs/USING_GITHUB_CHANGES.md for details)
+cp .env.example .env.local
+# Edit .env.local with your actual values
+```
+
+### Running the Development Server
 
 First, run the development server:
 
