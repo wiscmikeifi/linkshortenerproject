@@ -8,6 +8,7 @@ import {
   SignedOut,
   UserButton,
 } from "@clerk/nextjs";
+import { shadcn } from "@clerk/themes";
 import { Button } from "@/components/ui/button";
 import "./globals.css";
 
@@ -84,7 +85,7 @@ export default function RootLayout({
   );
 
   return hasClerkKeys ? (
-    <ClerkProvider>
+    <ClerkProvider appearance={{ baseTheme: shadcn }}>
       {content}
     </ClerkProvider>
   ) : content;
