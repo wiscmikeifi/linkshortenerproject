@@ -26,11 +26,6 @@ export default function Home() {
                 Get Started Free
               </Button>
             </Link>
-            <Link href={DASHBOARD_ROUTE}>
-              <Button size="lg" variant="outline" className="text-lg px-8">
-                View Dashboard
-              </Button>
-            </Link>
           </div>
         </div>
       </section>
