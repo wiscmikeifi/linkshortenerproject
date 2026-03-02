@@ -1,8 +1,5 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { Link as LinkIcon, Zap, BarChart3, Shield } from "lucide-react";
-
-const DASHBOARD_ROUTE = "/dashboard";
+import { GetStartedButton } from "@/components/get-started-button";
 
 export default function Home() {
   return (
@@ -21,11 +18,9 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-4">
-            <Link href={DASHBOARD_ROUTE}>
-              <Button size="lg" className="text-lg px-8">
-                Get Started Free
-              </Button>
-            </Link>
+            <GetStartedButton size="lg" className="text-lg px-8">
+              Get Started Free
+            </GetStartedButton>
           </div>
         </div>
       </section>
@@ -100,11 +95,9 @@ export default function Home() {
           <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
             Join thousands of users who trust our platform to manage their links. Sign up now and start shortening!
           </p>
-          <Link href={DASHBOARD_ROUTE}>
-            <Button size="lg" variant="secondary" className="text-lg px-8">
-              Start Shortening Now
-            </Button>
-          </Link>
+          <GetStartedButton size="lg" variant="secondary" className="text-lg px-8">
+            Start Shortening Now
+          </GetStartedButton>
         </div>
       </section>
     </div>

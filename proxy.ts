@@ -1,9 +1,16 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
 
 const isProtectedRoute = createRouteMatcher(['/dashboard(.*)']);
 
-export default clerkMiddleware((auth, req) => {
-  if (isProtectedRoute(req)) auth.protect();
+export default clerkMiddleware(async (auth, req) => {
+  const { userId } = await auth();
+  
+  // Redirect to homepage if trying to access dashboard without authentication
+  if (isProtectedRoute(req) && !userId) {
+    const homeUrl = new URL('/', req.url);
+    return NextResponse.redirect(homeUrl);
+  }
 });
 
 export const config = {
