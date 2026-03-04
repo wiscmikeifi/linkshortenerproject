@@ -1,6 +1,6 @@
 "use client";
 
-import { useAuth, SignUpButton } from "@clerk/nextjs";
+import { useAuth, SignInButton } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
@@ -30,12 +30,12 @@ export function GetStartedButton({
     );
   }
 
-  // If user is not logged in, show sign-up modal
+  // If user is not logged in, show sign-in modal
   return (
-    <SignUpButton mode="modal">
+    <SignInButton mode="modal">
       <Button variant={variant} size={size} className={className}>
         {children}
       </Button>
-    </SignUpButton>
+    </SignInButton>
   );
 }
