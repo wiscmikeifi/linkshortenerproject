@@ -175,6 +175,7 @@ npx drizzle-kit studio      # Open Drizzle Studio
 - **Run migrations** - Don't modify schema directly
 - **Revalidate paths** - After data mutations
 - **Follow conventions** - Check existing code patterns
+- **NEVER use middleware.ts** - This is deprecated in Next.js 16. Use `proxy.ts` instead for request handling and routing logic
 
 ## 🔗 External Resources
 

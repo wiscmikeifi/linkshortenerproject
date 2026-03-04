@@ -32,7 +32,7 @@ export function GetStartedButton({
 
   // If user is not logged in, show sign-in modal
   return (
-    <SignInButton mode="modal">
+    <SignInButton mode="modal" forceRedirectUrl="/dashboard">
       <Button variant={variant} size={size} className={className}>
         {children}
       </Button>
