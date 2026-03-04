@@ -75,14 +75,6 @@ The following instruction files contain critical standards, patterns, and guidel
 ### Path Aliases
 - `@/*` - Root directory imports
 
-### Development Commands
-```bash
-npm run dev      # Start development server (http://localhost:3000)
-npm run build    # Build for production
-npm run start    # Start production server
-npm run lint     # Run ESLint
-```
-
 ## Core Principles
 
 1. **Type Safety First**: Always use TypeScript with strict mode enabled
@@ -96,21 +88,85 @@ npm run lint     # Run ESLint
 ## File Organization
 
 ```
+linkshortenerproject/
 ├── app/                    # Next.js App Router pages
 │   ├── layout.tsx         # Root layout
 │   ├── page.tsx           # Home page
-│   └── globals.css        # Global styles
+│   ├── globals.css        # Global styles
+│   └── dashboard/         # Dashboard pages
 ├── components/            # React components
 │   └── ui/               # shadcn/ui components
 ├── db/                   # Database files
-│   ├── schema.ts         # Drizzle schema
+│   ├── schema.ts         # Drizzle schema definitions
 │   └── index.ts          # Database connection
 ├── lib/                  # Utility functions
 │   └── utils.ts          # Helper utilities
 ├── public/               # Static assets
-├── docs/                 # Agent instructions (this directory)
-└── instructions/         # Additional instructions
+└── docs/                 # Agent instructions (this directory)
 ```
+
+## 🚀 Common Tasks
+
+### Add a New Page
+1. Create `app/your-route/page.tsx`
+2. Use Server Component by default
+3. Fetch data directly in component
+4. Use proper TypeScript types
+
+### Create a Component
+1. Create in `components/` directory
+2. Follow naming: `kebab-case.tsx` for files, `PascalCase` for exports
+3. Add `'use client'` directive only if needed (interactivity, hooks, events)
+4. Use TypeScript interfaces for props
+
+### Add Database Table
+1. Define schema in `db/schema.ts`
+2. Export types with `InferSelectModel` and `InferInsertModel`
+3. Run `npx drizzle-kit generate` to create migration
+4. Run `npx drizzle-kit migrate` to apply migration
+
+### Create API Route
+1. Create `app/api/your-route/route.ts`
+2. Export GET, POST, PUT, DELETE functions as needed
+3. Use `NextRequest` and `NextResponse`
+4. Implement proper error handling
+
+### Add Server Action
+1. Create in `actions/` directory
+2. Add `'use server'` directive at top of file
+3. Return success/error object for consistent handling
+4. Use `revalidatePath()` or `revalidateTag()` when data changes
+
+## Development Commands
+
+```bash
+# Development
+npm run dev          # Start dev server on localhost:3000
+
+# Build
+npm run build        # Build for production
+npm run start        # Start production server
+
+# Code Quality
+npm run lint         # Run ESLint
+
+# Database
+npx drizzle-kit generate    # Generate migrations from schema
+npx drizzle-kit migrate     # Apply migrations to database
+npx drizzle-kit push        # Push schema changes (dev only)
+npx drizzle-kit studio      # Open Drizzle Studio UI
+```
+
+## ⚠️ Important Notes
+
+- **Never commit secrets** - Use environment variables
+- **Always validate input** - Both client and server side
+- **Use Server Components** - Unless you need interactivity
+- **Type everything** - No `any` types allowed
+- **Run migrations** - Don't modify database schema directly
+- **Revalidate paths** - After data mutations in Server Actions
+- **Follow conventions** - Check existing code patterns first
+- **NEVER use middleware.ts** - This is deprecated in Next.js 16. Use `proxy.ts` instead for request handling and routing logic
 
 ## Before Making Changes
 
@@ -136,17 +192,18 @@ npm run lint     # Run ESLint
   - [Drizzle ORM Docs](https://orm.drizzle.team)
   - [Clerk Docs](https://clerk.com/docs)
   - [Tailwind CSS Docs](https://tailwindcss.com/docs)
+  - [shadcn/ui Docs](https://ui.shadcn.com)
 
 ## Environment Setup
 
 Required environment variables (see `.env.local` example):
 ```env
-DATABASE_URL=            # Neon PostgreSQL connection string
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
-CLERK_SECRET_KEY=
+DATABASE_URL=                           # Neon PostgreSQL connection string
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=      # Clerk public key
+CLERK_SECRET_KEY=                       # Clerk secret key
 ```
 
 ---
 
-**Last Updated:** February 2026  
+**Last Updated:** March 2026  
 **Maintainer:** Project Team
