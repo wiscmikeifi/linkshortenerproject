@@ -1,8 +1,9 @@
 "use client";
 
 import { useAuth, SignInButton } from "@clerk/nextjs";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 interface GetStartedButtonProps {
   variant?: "default" | "secondary" | "outline" | "ghost" | "link" | "destructive";
@@ -22,10 +23,11 @@ export function GetStartedButton({
   // If user is logged in, navigate to dashboard
   if (isSignedIn) {
     return (
-      <Link href="/dashboard">
-        <Button variant={variant} size={size} className={className}>
-          {children}
-        </Button>
+      <Link 
+        href="/dashboard" 
+        className={cn(buttonVariants({ variant, size }), className)}
+      >
+        {children}
       </Link>
     );
   }

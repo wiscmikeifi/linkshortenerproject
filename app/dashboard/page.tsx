@@ -1,6 +1,11 @@
 import { auth } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
 import { getLinksByUserId } from '@/data/links';
+import { CreateLinkDialog } from '@/components/create-link-dialog';
+import { EditLinkDialog } from '@/components/edit-link-dialog';
+import { DeleteLinkDialog } from '@/components/delete-link-dialog';
+import { Button } from '@/components/ui/button';
+import { Pencil, Trash2 } from 'lucide-react';
 
 export default async function DashboardPage() {
   const { userId } = await auth();
@@ -11,11 +16,13 @@ export default async function DashboardPage() {
   }
 
   const userLinks = await getLinksByUserId(userId);
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
 
   return (
     <div className="container mx-auto px-6 py-8">
-      <h1 className="text-4xl font-bold mb-8">Dashboard</h1>
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-4xl font-bold">Dashboard</h1>
+        <CreateLinkDialog />
+      </div>
       
       <div className="mb-8">
         <h2 className="text-2xl font-semibold mb-4">Your Links</h2>
@@ -36,14 +43,9 @@ export default async function DashboardPage() {
                     <span className="font-semibold text-sm text-muted-foreground">
                       Short URL:
                     </span>
-                    <a
-                      href={`${baseUrl}/${link.shortCode}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline font-mono"
-                    >
-                      {baseUrl}/{link.shortCode}
-                    </a>
+                    <span className="text-blue-600 font-mono">
+                      {link.shortCode}
+                    </span>
                   </div>
                   
                   <div className="flex items-start gap-2">
@@ -60,10 +62,9 @@ export default async function DashboardPage() {
                     </a>
                   </div>
                   
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <span>Created:</span>
-                    <time dateTime={link.createdAt}>
-                      {new Date(link.createdAt).toLocaleDateString('en-US', {
+                  <div className="flex items-center justify-between gap-2 mt-2">
+                    <time dateTime={link.createdAt} className="text-sm text-muted-foreground">
+                      Created: {new Date(link.createdAt).toLocaleDateString('en-US', {
                         year: 'numeric',
                         month: 'long',
                         day: 'numeric',
@@ -71,6 +72,29 @@ export default async function DashboardPage() {
                         minute: '2-digit',
                       })}
                     </time>
+                    
+                    <div className="flex items-center gap-2">
+                      <EditLinkDialog
+                        link={{
+                          id: link.id,
+                          shortCode: link.shortCode,
+                          originalUrl: link.originalUrl,
+                        }}
+                      >
+                        <Button variant="outline" size="icon" title="Edit link">
+                          <Pencil className="h-4 w-4" />
+                        </Button>
+                      </EditLinkDialog>
+                      
+                      <DeleteLinkDialog
+                        linkId={link.id}
+                        shortCode={link.shortCode}
+                      >
+                        <Button variant="destructive" size="icon" title="Delete link">
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </DeleteLinkDialog>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -78,8 +102,6 @@ export default async function DashboardPage() {
           </div>
         )}
       </div>
-      
-      {/* TODO: Add link shortening form here */}
     </div>
   );
 }
