@@ -4,18 +4,6 @@
 
 This document serves as the main entry point for AI coding assistants working on this link shortener project. All agent instructions are organized into separate markdown files for clarity and maintainability.
 
-## ⚠️ CRITICAL REQUIREMENT - READ THIS FIRST ⚠️
-
-**BEFORE GENERATING ANY CODE, YOU MUST:**
-
-1. **ALWAYS read the relevant instruction files** in the `/docs` directory that pertain to the task at hand
-2. **NEVER generate code** without first consulting the appropriate documentation
-3. **UNDERSTAND the standards and patterns** defined in those files completely
-
-**This is NOT optional. This is a MANDATORY requirement for all code generation.**
-
-Failure to follow these instructions will result in code that does not meet project standards and will need to be rewritten.
-
 ## Project Summary
 
 **Project Type:** Link Shortener Web Application  
