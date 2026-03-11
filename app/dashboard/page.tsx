@@ -39,39 +39,20 @@ export default async function DashboardPage() {
                 className="border rounded-lg p-4 hover:shadow-md transition-shadow"
               >
                 <div className="flex flex-col gap-2">
-                  <div className="flex items-center gap-2">
-                    <span className="font-semibold text-sm text-muted-foreground">
-                      Short URL:
-                    </span>
-                    <span className="text-blue-600 font-mono">
-                      {link.shortCode}
-                    </span>
-                  </div>
-                  
-                  <div className="flex items-start gap-2">
-                    <span className="font-semibold text-sm text-muted-foreground whitespace-nowrap">
-                      Original URL:
-                    </span>
-                    <a
-                      href={link.originalUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-600 hover:underline break-all"
-                    >
-                      {link.originalUrl}
-                    </a>
-                  </div>
-                  
-                  <div className="flex items-center justify-between gap-2 mt-2">
-                    <time dateTime={link.createdAt} className="text-sm text-muted-foreground">
-                      Created: {new Date(link.createdAt).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit',
-                      })}
-                    </time>
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2">
+                      <span className="font-semibold text-sm text-muted-foreground">
+                        Short URL:
+                      </span>
+                      <a
+                        href={`/l/${link.shortCode}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-600 font-mono hover:underline"
+                      >
+                        {link.shortCode}
+                      </a>
+                    </div>
                     
                     <div className="flex items-center gap-2">
                       <EditLinkDialog
@@ -95,6 +76,32 @@ export default async function DashboardPage() {
                         </Button>
                       </DeleteLinkDialog>
                     </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-2">
+                    <span className="font-semibold text-sm text-muted-foreground whitespace-nowrap">
+                      Original URL:
+                    </span>
+                    <a
+                      href={link.originalUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-600 hover:underline break-all"
+                    >
+                      {link.originalUrl}
+                    </a>
+                  </div>
+                  
+                  <div className="flex items-center gap-2">
+                    <time dateTime={link.createdAt} className="text-sm text-muted-foreground">
+                      Created: {new Date(link.createdAt).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                      })}
+                    </time>
                   </div>
                 </div>
               </div>

@@ -37,6 +37,16 @@ export async function checkShortCodeExists(shortCode: string) {
   return !!existingLink;
 }
 
+export async function getLinkByShortCode(shortCode: string) {
+  const [link] = await db
+    .select()
+    .from(links)
+    .where(eq(links.shortCode, shortCode))
+    .limit(1);
+  
+  return link;
+}
+
 export async function getLinkById(id: number) {
   const [link] = await db
     .select()
